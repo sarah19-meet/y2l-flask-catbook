@@ -15,5 +15,18 @@ def new_home(id):
 	cat=get_cat_by_id(id)
 	return render_template("cat.html", cat=cat)
 
+@app.route('/create', methods=['GET','POST'])
+def cat_new():
+	if reguest.method == 'GET':
+		return render_template("cat_new.html")
+	else:
+		name=request.form['catname']
+
+		save_database(name)
+		return render_template("home.html", n=name
+			)
+
+	
+
 if __name__ == '__main__':
    app.run(debug = True)
